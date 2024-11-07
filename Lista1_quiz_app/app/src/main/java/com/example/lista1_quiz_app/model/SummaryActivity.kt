@@ -1,5 +1,6 @@
 package com.example.lista1_quiz_app.model
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.lista1_quiz_app.MainActivity
 import com.example.lista1_quiz_app.R
 
 
@@ -28,6 +30,10 @@ class SummaryActivity : AppCompatActivity() {
 
         val btnRestart = findViewById<Button>(R.id.btnRestart)
         btnRestart.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java).apply {
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+            startActivity(intent)
             finish()
         }
     }

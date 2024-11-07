@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         // set radioArray
         radioArray = arrayOf(radioButton1, radioButton2, radioButton3, radioButton4)
 
