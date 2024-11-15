@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/fragment_log">
+
+    <fragment
+        android:id="@+id/fragment_log"
+        android:name="com.example.lsta2.LogFragment"
+        android:label="fragment_log"
+        tools:layout="@layout/fragment_log" >
+        <action
+            android:id="@+id/action_log_to_home"
+            app:destination="@id/fragment_home">
+            <argument android:name="username"
+                app:argType="String"/>
+        </action>
+        <action
+            android:id="@+id/action_fragment_log_to_fragment_reg"
+            app:destination="@id/fragment_reg" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_reg"
+        android:name="com.example.lsta2.RegFragment"
+        android:label="fragment_reg"
+        tools:layout="@layout/fragment_reg" >
+        <action
+            android:id="@+id/action_fragment_reg_to_fragment_log"
+            app:destination="@id/fragment_log" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.example.lsta2.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_log"
+            app:destination="@id/fragment_log" />
+    </fragment>
+</navigation>
