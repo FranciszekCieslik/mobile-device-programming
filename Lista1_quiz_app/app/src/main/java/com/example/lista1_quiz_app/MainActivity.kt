@@ -2,7 +2,6 @@ package com.example.lista1_quiz_app
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Telephony.Mms.Intents
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RadioButton
@@ -11,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lista1_quiz_app.model.DataProvider
 import com.example.lista1_quiz_app.model.SummaryActivity
-import java.security.KeyStore.TrustedCertificateEntry
 
 class MainActivity : AppCompatActivity() {
 

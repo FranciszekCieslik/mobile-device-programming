@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/AFragment"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Oceny" />
+    <item
+        android:id="@id/BFragment"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Listy zadań" />
+</menu>
