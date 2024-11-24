@@ -3,16 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BFragment">
+    tools:context=".CFragment">
+
+    <TextView
+        android:id="@+id/title_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matematyka"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        />
 
     <TextView
         android:id="@+id/title_tasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Moje Listy Zadań"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginTop="16dp"
+        android:text="Lista 1"
+        android:textSize="14sp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal"
         />
 
@@ -20,7 +30,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="55dp"
         android:clipToPadding="false"
         android:padding="16dp"/>
 

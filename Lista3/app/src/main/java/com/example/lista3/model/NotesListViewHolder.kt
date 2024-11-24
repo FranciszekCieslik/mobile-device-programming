@@ -1,10 +1,10 @@
 package com.example.lista3.model
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lista3.databinding.WordListItemBinding
+import com.example.lista3.databinding.NotesListItemBinding
 
-class WordListViewHolder(
-    private val binding: WordListItemBinding,
+class NotesListViewHolder(
+    binding: NotesListItemBinding,
     onItemClick: (Int) -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root) {
@@ -14,8 +14,8 @@ class WordListViewHolder(
             onItemClick(adapterPosition)
         }
     }
-    fun bind(item: String) {
-            binding.singleWord.text = item
+    fun bind() {
+//            binding.singleWord.text = item
     }
 
 }

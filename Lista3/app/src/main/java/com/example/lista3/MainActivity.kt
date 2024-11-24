@@ -11,7 +11,6 @@ import com.example.lista3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }

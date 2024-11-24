@@ -14,5 +14,14 @@
         android:id="@+id/BFragment"
         android:name="com.example.lista3.BFragment"
         android:label="fragment_b"
-        tools:layout="@layout/fragment_b" />
+        tools:layout="@layout/fragment_b" >
+        <action
+            android:id="@+id/action_BFragment_to_CFragment"
+            app:destination="@id/CFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CFragment"
+        android:name="com.example.lista3.CFragment"
+        android:label="fragment_c"
+        tools:layout="@layout/fragment_c" />
 </navigation>
