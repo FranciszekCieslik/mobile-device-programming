@@ -1,16 +1,16 @@
-import org.gradle.internal.serialize.graph.codecs.Bindings
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
-    namespace = "com.example.lista3"
+    namespace = "com.example.a3list"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.lista3"
+        applicationId = "com.example.a3list"
         minSdk = 35
         targetSdk = 35
         versionCode = 1
@@ -29,18 +29,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

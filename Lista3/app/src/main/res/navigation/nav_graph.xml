@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentE1">
+
+    <fragment
+        android:id="@+id/fragmentE1"
+        android:name="com.example.a3list.FragmentE1"
+        android:label="fragment_e1"
+        tools:layout="@layout/fragment_e1" >
+        <action
+            android:id="@+id/action_fragmentE1_to_fragmentE3"
+            app:destination="@id/fragmentE3" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentE2"
+        android:name="com.example.a3list.FragmentE2"
+        android:label="fragment_e2"
+        tools:layout="@layout/fragment_e2" />
+    <fragment
+        android:id="@+id/fragmentE3"
+        android:name="com.example.a3list.FragmentE3"
+        android:label="fragment_e3"
+        tools:layout="@layout/fragment_e3" >
+        <argument
+            android:name="selectedTask"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentE3_to_fragmentE2"
+            app:destination="@id/fragmentE2" />
+        <action
+            android:id="@+id/action_fragmentE3_to_fragmentE1"
+            app:destination="@id/fragmentE1" />
+    </fragment>
+</navigation>
