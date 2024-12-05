@@ -21,6 +21,8 @@ class SubjectViewHolder(
             val average =
                 round(grades.sum()/grades.size*100) /100
             binding.textSubjectAverage.text = "Średnia: ${average}"
+            val n_list = subject.exercises.size
+            binding.listCount.text = "Liczba list: ${n_list}"
 
             //itemView.setOnClickListener { onSubjectClick(subject) }
         }
