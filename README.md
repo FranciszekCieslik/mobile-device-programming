@@ -321,4 +321,246 @@ Serializacja pozwala:
 2. Przesyłać dane między różnymi komponentami systemu lub siecią.
 3. W Androidzie zwykle używa się **`Parcelable`** do przesyłania obiektów między aktywnościami lub fragmentami, ponieważ jest szybsze i wydajniejsze niż klasyczne **`Serializable`**.
 
-Kompozycja
+**Kompozycja** w kontekście Jetpack Compose w Android Studio to proces, w którym interfejs użytkownika (UI) jest budowany i zarządzany. W odróżnieniu od tradycyjnego podejścia opierającego się na XML, Jetpack Compose używa deklaratywnego modelu opisu UI. Kompozycja jest centralnym mechanizmem, który odpowiada za generowanie, aktualizację i ponowne renderowanie elementów interfejsu w odpowiedzi na zmiany stanu.
+
+### Jak działa kompozycja?
+
+1. **Definiowanie UI za pomocą `@Composable`**:
+   - W Jetpack Compose interfejs jest definiowany za pomocą funkcji oznaczonych adnotacją `@Composable`.
+   - Funkcja `@Composable` to podstawowy element, który opisuje strukturę i wygląd elementów UI.
+
+   Przykład:
+   ```kotlin
+   @Composable
+   fun Greeting(name: String) {
+       Text(text = "Hello, $name!")
+   }
+   ```
+
+2. **Rekompozycja**:
+   - Jeśli dane (stan) używane w funkcji `@Composable` ulegają zmianie, Compose automatycznie przeprowadza **rekompozycję**.
+   - Rekompozycja to proces odświeżania tylko tych części UI, które tego wymagają, co poprawia wydajność aplikacji.
+
+   Przykład:
+   ```kotlin
+   @Composable
+   fun Counter() {
+       var count by remember { mutableStateOf(0) }
+       Button(onClick = { count++ }) {
+           Text("Kliknięcia: $count")
+       }
+   }
+   ```
+   Gdy użytkownik kliknie przycisk, zmiana stanu `count` wywoła rekompozycję, która odświeży tylko elementy zależne od tego stanu.
+
+3. **Stan (State) i pamiętanie stanu (`remember`)**:
+   - Kompozycja w Compose działa w połączeniu z zarządzaniem stanem aplikacji. 
+   - Elementy takie jak `remember` i `mutableStateOf` pozwalają na zachowanie stanu wewnątrz funkcji `@Composable`.
+
+4. **Hierarchia UI**:
+   - Podczas kompozycji Jetpack Compose buduje hierarchię elementów UI w oparciu o wywołania funkcji `@Composable`. To tworzy tzw. "drzewo kompozycji", które jest dynamicznie zarządzane.
+
+5. **Zalety kompozycji**:
+   - **Deklaratywność**: UI jest wyrażane w prosty, czytelny sposób jako funkcje.
+   - **Optymalizacja**: Tylko te części drzewa kompozycji, które muszą się zmienić, są odświeżane.
+   - **Modularność**: Funkcje `@Composable` można łatwo łączyć i ponownie wykorzystywać.
+
+### Przykład procesu kompozycji
+1. Definiujesz komponenty:
+   ```kotlin
+   @Composable
+   fun ProfileScreen() {
+       Column {
+           Greeting("Jan")
+           Button(onClick = { /* obsługa kliknięcia */ }) {
+               Text("Kliknij mnie")
+           }
+       }
+   }
+   ```
+
+2. `ProfileScreen()` wywołuje inne funkcje `@Composable`, takie jak `Greeting` i `Button`. Jetpack Compose renderuje te elementy na ekranie.
+
+3. Gdy zmienia się stan związany z przyciskiem, tylko ta część interfejsu zostaje odświeżona.
+
+---
+
+### Podsumowanie
+Kompozycja w Jetpack Compose to proces:
+- Tworzenia hierarchii elementów UI na podstawie funkcji `@Composable`.
+- Automatycznego aktualizowania i renderowania UI w odpowiedzi na zmiany stanu.
+- Optymalnego zarządzania wydajnością dzięki mechanizmowi rekompozycji.
+
+# Jetpack Compose – Podstawy i Najważniejsze Funkcjonalności
+
+## 1. Czym jest Jetpack Compose?
+Jetpack Compose to nowoczesny toolkit UI od Google do budowy interfejsów użytkownika dla aplikacji Android. Jest oparty na zasadach programowania deklaratywnego, co oznacza, że zamiast manipulowania widokami za pomocą XML i kodu, programista opisuje, jak UI powinno wyglądać w odpowiedzi na dane aplikacji.
+
+**Główne cechy Compose:**
+- Deklaratywność: interfejs użytkownika jest tworzony jako funkcje Kotlinowe.
+- Większa spójność i prostota w stosunku do XML.
+- Ścisła integracja z innymi elementami Androida (LiveData, ViewModel).
+- Łatwość zarządzania stanem aplikacji.
+
+---
+
+## 2. Jak Działa Jetpack Compose?
+Jetpack Compose wykorzystuje funkcje Kotlin oznaczone jako `@Composable`. Te funkcje opisują elementy interfejsu użytkownika, a Compose zarządza ich życiem, aktualizacjami i renderowaniem.
+
+Przykładowa funkcja `@Composable`:
+```kotlin
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello, $name!")
+}
+```
+
+**Proces aktualizacji UI w Compose:**
+1. **Deklaratywność:** Funkcja jest wywoływana z odpowiednimi danymi.
+2. **Rekompozycja:** Jeśli dane się zmienią, Compose odświeży tylko te elementy, które tego wymagają.
+3. **Optymalizacja:** Compose minimalizuje ilość operacji renderowania.
+
+### Jak działa `@Composable()`?
+`@Composable` to adnotacja w Jetpack Compose, która oznacza funkcje odpowiedzialne za generowanie UI. Funkcja oznaczona tą adnotacją:
+- Nie zwraca bezpośrednio UI (np. obiektów View), tylko opisuje strukturę UI.
+- Może być wywoływana w innych funkcjach `@Composable`.
+- Pozwala Compose na optymalne zarządzanie cyklem życia komponentów i wydajnością.
+
+---
+
+## 3. Kluczowe Elementy Jetpack Compose
+
+### 3.1. `@Composable`
+Oznacza funkcję, która tworzy UI. Każda funkcja `@Composable` może być użyta jako budulec innych funkcji.
+
+### 3.2. **`Modifier`**
+`Modifier` służy do dodawania stylizacji, logiki układu i obsługi zdarzeń do elementów UI.
+
+Przykład:
+```kotlin
+Text(
+    text = "Przykład Modifikatora",
+    modifier = Modifier.padding(16.dp).background(Color.Gray)
+)
+```
+
+**Najważniejsze właściwości Modifier:**
+- `padding()`: dodaje odstępy wewnętrzne.
+- `background()`: ustawia tło.
+- `clickable()`: dodaje obsługę kliknięcia.
+- `fillMaxSize()` / `wrapContentSize()`: zarządza przestrzenią na ekranie.
+
+### 3.3. **State (Stan)**
+Jetpack Compose zarządza stanem UI za pomocą mechanizmów takich jak `MutableState` i `remember`.
+
+Przykład:
+```kotlin
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+
+    Button(onClick = { count++ }) {
+        Text(text = "Kliknięcia: $count")
+    }
+}
+```
+
+- `remember { mutableStateOf(0) }`: Przechowuje stan wewnątrz funkcji.
+- Kiedy `count` się zmienia, Compose automatycznie odświeża funkcję.
+
+### 3.4. **Material Design**
+Compose wspiera Material Design, co pozwala szybko budować nowoczesne interfejsy.
+
+Przykład karty z Material Design:
+```kotlin
+@Composable
+fun CardExample() {
+    Card(
+        modifier = Modifier.padding(16.dp),
+        elevation = 8.dp
+    ) {
+        Text(text = "Jestem kartą!", modifier = Modifier.padding(16.dp))
+    }
+}
+```
+
+---
+
+## 4. Jetpack Compose Lists
+Compose oferuje komponenty takie jak `LazyColumn` i `LazyRow`, które pozwalają na wyświetlanie długich list w wydajny sposób (lazy loading).
+
+### **LazyColumn** (Lista pionowa)
+```kotlin
+@Composable
+fun NameList(names: List<String>) {
+    LazyColumn {
+        items(names) { name ->
+            Text(text = name, modifier = Modifier.padding(8.dp))
+        }
+    }
+}
+```
+- `items()`: Funkcja iteruje po liście i tworzy elementy UI dla każdego elementu.
+
+### **LazyRow** (Lista pozioma)
+```kotlin
+@Composable
+fun HorizontalList(items: List<String>) {
+    LazyRow {
+        items(items) { item ->
+            Text(text = item, modifier = Modifier.padding(8.dp))
+        }
+    }
+}
+```
+
+---
+
+## 5. Jetpack Compose Navigation
+Compose Navigation pozwala na obsługę nawigacji pomiędzy ekranami w aplikacji.
+
+### Konfiguracja
+1. Dodaj zależność do `build.gradle`:
+   ```gradle
+   implementation "androidx.navigation:navigation-compose:2.7.2"
+   ```
+
+2. Zainicjalizuj kontroler nawigacji:
+   ```kotlin
+   val navController = rememberNavController()
+   ```
+
+3. Utwórz `NavHost`:
+   ```kotlin
+   @Composable
+   fun MyApp() {
+       val navController = rememberNavController()
+       NavHost(navController = navController, startDestination = "home") {
+           composable("home") { HomeScreen(navController) }
+           composable("details") { DetailsScreen() }
+       }
+   }
+   ```
+
+4. Nawigacja między ekranami:
+   ```kotlin
+   @Composable
+   fun HomeScreen(navController: NavController) {
+       Button(onClick = { navController.navigate("details") }) {
+           Text("Przejdź do szczegółów")
+       }
+   }
+   ```
+
+---
+
+## 6. Podsumowanie
+Jetpack Compose upraszcza tworzenie interfejsów w Androidzie dzięki podejściu deklaratywnemu i integracji z nowoczesnymi wzorcami architektonicznymi (np. MVVM). Kluczowymi elementami są:
+- `@Composable` dla budowy UI.
+- `Modifier` dla stylizacji i interakcji.
+- `LazyColumn` i `LazyRow` do zarządzania listami.
+- Jetpack Navigation do zarządzania przejściami między ekranami.
+
+Wykorzystanie tych funkcjonalności umożliwia budowanie przejrzystych i wydajnych aplikacji.
+
+
